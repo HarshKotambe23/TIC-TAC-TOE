@@ -6,340 +6,218 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .mainBox {
+            width: 350px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            height: 100px;
+            width: 100px;
+            border: 2px solid coral;
+            transition: 200ms;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+        }
+
+        .box:hover {
+            transform: scale(0.8);
+        }
+
+        .danger {
+            background-color: red;
+        }
+
+        .success {
+            background-color: green;
+        }
+
+        .alert {
+            /* background-color: white; */
+            padding: 1rem 2rem;
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        .playerBox {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        height: 100vh;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        justify-content: center;
-        align-items: center;
-        font-family: sans-serif;
-        color: white;
-    }
-
-    .mainBox {
-        width: 300px;
-        display: flex;
-        flex-wrap: wrap;
-        margin: auto;
-    }
-
-    .box {
-        height: 100px;
-        width: 100px;
-        border: solid 2px coral;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 200ms;
-        font-size: 5rem;
-    }
-
-    .box:hover {
-        transform: scale(0.8);
-    }
-
-    .danger {
-        background-color: red;
-    }
-
-    .success {
-        background-color: green;
-    }
-
-    .alert {
-        /* background-color: red; */
-        color: white;
-        padding: 1rem 2rem;
-    }
-
-    .d-none {
-        display: none;
-    }
-
-    .playerBox {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 50px;
-    }
-
-    .bt-0 {
-        border-top: 0;
-    }
-
-    .bb-0 {
-        border-bottom: 0;
-    }
-
-    .bl-0 {
-        border-left: 0;
-    }
-
-    .br-0 {
-        border-right: 0;
-    }
-
-    .playerName1 {
-        padding: 1rem;
-        border-radius: 10px;
-
-    }
-
-    .playerName2 {
-        padding: 1rem;
-        border-radius: 10px;
-    }
-
-    .btn {
-        padding: 1rem;
-        border-radius: 10px;
-        background-color: blue;
-    }
-</style>
 
 <body>
+
     <!-- 
-
-
-        step 1  creat 9 boxes 
-    step 2  selection logic
-    step 3  prevent overwrite
-    step 4  winner logic
-    step 5  draw logic
-    step 6  score logic
-    step 7  reset game
- 
--->
-
-    <div id="output">
-
+        step 1 create 9 boxes
+        step 2 selection logic
+        step 3 prevent overwrite
+        step 4 winner logic
+        step 5 draw logic
+        step 6 score logic
+        step 7 reset logic
+     -->
+    <div id="output"></div>
+    <div class="card" id="palyerCard">
+        <input id="player1" value="john" type="text" placeholder="enter player 1 name">
+        <input id="player2" value="kate" type="text" placeholder="enter player 2 name">
+        <button onclick="startGame()">Start Game</button>
     </div>
-    <div class="card" id="playerCard">
-        <input class="playerName1" id="player1" type="text" placeholder="Enter Player 1 Name">
-        <input class="playerName2" id="player2" type="text" placeholder="Enter Player 2 Name">
-        <button class="btn" onclick="startGame()">Start Game</button>
-    </div>
-    <div class="d-none" id="gameBox">
+    <div id="gameBox" class="d-none">
         <div class="playerBox">
-            <h1><span id="p1"></span> : <span id="p1WinCount"></span> </h1>
+            <h1><span id="p1"></span> : <span id="p1WinCount"></span></h1>
             <h1><span id="p2"></span> : <span id="p2WinCount"></span></h1>
-            <h1>Draw :<span id="drawCount"></span></h1>
-            <h1>Total : <span id="tMCount"></span></h1>
+            <h1>Draw : <span id="drawCount"></span> </h1>
+            <h1>Total : <span id="total"></span></h1>
         </div>
-
         <div class="mainBox ">
-            <div id="b1" onclick="handleSelect('b1')" class="box bt-0 bl-0"></div>
-            <div id="b2" onclick="handleSelect('b2')" class="box bt-0"></div>
-            <div id="b3" onclick="handleSelect('b3')" class="box bt-0 br-0"></div>
-            <div id="b4" onclick="handleSelect('b4')" class="box bl-0"></div>
-            <div id="b5" onclick="handleSelect('b5')" class="box"></div>
-            <div id="b6" onclick="handleSelect('b6')" class="box br-0"></div>
-            <div id="b7" onclick="handleSelect('b7')" class="box bb-0 bl-0"></div>
-            <div id="b8" onclick="handleSelect('b8')" class="box bb-0"></div>
-            <div id="b9" onclick="handleSelect('b9')" class="box bb-0 br-0"></div>
+            <div class="box" id="b1" onclick="handleSelect('b1')"></div>
+            <div class="box" id="b2" onclick="handleSelect('b2')"></div>
+            <div class="box" id="b3" onclick="handleSelect('b3')"></div>
+            <div class="box" id="b4" onclick="handleSelect('b4')"></div>
+            <div class="box" id="b5" onclick="handleSelect('b5')"></div>
+            <div class="box" id="b6" onclick="handleSelect('b6')"></div>
+            <div class="box" id="b7" onclick="handleSelect('b7')"></div>
+            <div class="box" id="b8" onclick="handleSelect('b8')"></div>
+            <div class="box" id="b9" onclick="handleSelect('b9')"></div>
         </div>
     </div>
-
     <script>
         let chance = true
         let player1WinCount = 0
         let player2WinCount = 0
         let drawCount = 0
-        let totalMatches = 0
+        let totalCount = 0
+
+        function startGame() {
+
+            let player1 = document.getElementById("player1").value
+            let player2 = document.getElementById("player2").value
+
+            document.getElementById("p1").innerHTML = player1
+            document.getElementById("p2").innerHTML = player2
+
+            document.getElementById("p1WinCount").innerHTML = player1WinCount
+            document.getElementById("p2WinCount").innerHTML = player2WinCount
+            document.getElementById("drawCount").innerHTML = drawCount
+            document.getElementById("total").innerHTML = totalCount
+
+            document.getElementById("gameBox").classList.remove("d-none")
+            document.getElementById("palyerCard").classList.add("d-none")
+
+        }
         function handleSelect(arg) {
-            let hasDanger = document.getElementById(arg).classList.contains("danger")
-            let hasSuccess = document.getElementById(arg).classList.contains("success")
-            if (hasDanger === false && hasSuccess === false) {
+            let hasDanger = document
+                .getElementById(arg)
+                .classList
+                .contains("danger")
+            let hasSuccess = document
+                .getElementById(arg)
+                .classList
+                .contains("success")
+            if (hasSuccess === false && hasDanger === false) {
                 if (chance) {
                     document.getElementById(arg).classList.add("danger")
-                    document.getElementById(arg).innerHTML = "O"
-                    chance = false
-                }
-                else {
-                    document.getElementById(arg).classList.add("success")
                     document.getElementById(arg).innerHTML = "X"
+                    chance = false
+                } else {
+                    document.getElementById(arg).classList.add("success")
+                    document.getElementById(arg).innerHTML = "O"
                     chance = true
                 }
             }
-
-            checkdraw()
-
-            //or
-            // document.querySelector(`#${arg}`).classList.add("danger")
-            //or
-            // document.querySelector('#' + arg).classList.add("danger")
+            checkDraw()
         }
 
-
         function winner() {
-            //     let b1HasRed = document.querySelector("#b1").classList.contains("danger")
-            //     let b2HasRed = document.querySelector("#b2").classList.contains("danger")
-            //     let b3HasRed = document.querySelector("#b3").classList.contains("danger")
-            //     if (b1HasRed && b2HasRed && b3HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     let b4HasRed = document.querySelector("#b4").classList.contains("danger")
-            //     let b5HasRed = document.querySelector("#b5").classList.contains("danger")
-            //     let b6HasRed = document.querySelector("#b6").classList.contains("danger")
-            //     if (b4HasRed && b5HasRed && b6HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     let b7HasRed = document.querySelector("#b7").classList.contains("danger")
-            //     let b8HasRed = document.querySelector("#b8").classList.contains("danger")
-            //     let b9HasRed = document.querySelector("#b9").classList.contains("danger")
-            //     if (b7HasRed && b8HasRed && b9HasRed) {
-            //         console.log("Red is winner");
-            //     }
 
-            //     if (b1HasRed && b4HasRed && b7HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     if (b2HasRed && b5HasRed && b8HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     if (b3HasRed && b6HasRed && b9HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     if (b1HasRed && b5HasRed && b9HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     if (b3HasRed && b5HasRed && b7HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     let b1HasGreen = document.querySelector("#b1").classList.contains("success")
-            //     let b2HasGreen = document.querySelector("#b2").classList.contains("success")
-            //     let b3HasGreen = document.querySelector("#b3").classList.contains("success")
-            //     if (b1HasRed && b2HasRed && b3HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     let b4HasGreen = document.querySelector("#b4").classList.contains("success")
-            //     let b5HasGreen = document.querySelector("#b5").classList.contains("success")
-            //     let b6HasGreen = document.querySelector("#b6").classList.contains("success")
-            //     if (b4HasRed && b5HasRed && b6HasRed) {
-            //         console.log("Red is winner");
-            //     }
-            //     let b7HasGreen = document.querySelector("#b7").classList.contains("success")
-            //     let b8HasGreen = document.querySelector("#b8").classList.contains("success")
-            //     let b9HasGreen = document.querySelector("#b9").classList.contains("success")
-            //     if (b7HasRed && b8HasRed && b9HasRed) {
-            //         console.log("Green is winner");
-            //     }
-
-            //     if (b1HasGreen && b4HasGreen && b7HasGreen) {
-            //         console.log("Green is winner");
-            //     }
-            //     if (b2HasGreen && b5HasGreen && b8HasGreen) {
-            //         console.log("Green is winner");
-            //     }
-            //     if (b3HasGreen && b6HasGreen && b9HasGreen) {
-            //         console.log("Green is winner");
-            //     }
-            //     if (b1HasGreen && b5HasGreen && b9HasGreen) {
-            //         console.log("Green is winner");
-            //     }
-            //     if (b3HasGreen && b5HasGreen && b7HasGreen) {
-            //         console.log("Green is winner");
-            //     }
-
-            // OR we can write short code as
-
-
-
-
+            // let b1HasRed = document.querySelector("#b1").classList.contains("danger")
+            // let b2HasRed = document.querySelector("#b2").classList.contains("danger")
+            // let b3HasRed = document.querySelector("#b3").classList.contains("danger")
+            // if (b1HasRed && b2HasRed && b3HasRed) {
+            //     console.log("Red is winner");
+            // }
             let rwc1 = checkWinner("b1", "b2", "b3", "danger")
             let rwc2 = checkWinner("b4", "b5", "b6", "danger")
             let rwc3 = checkWinner("b7", "b8", "b9", "danger")
-            let rwc4 = checkWinner("b1", "b5", "b9", "danger")
-            let rwc5 = checkWinner("b1", "b4", "b7", "danger")
-            let rwc6 = checkWinner("b3", "b5", "b7", "danger")
-            let rwc7 = checkWinner("b2", "b5", "b8", "danger")
-            let rwc8 = checkWinner("b3", "b6", "b9", "danger")
+            let rwc4 = checkWinner("b1", "b4", "b7", "danger")
+            let rwc5 = checkWinner("b2", "b5", "b8", "danger")
+            let rwc6 = checkWinner("b3", "b6", "b9", "danger")
+            let rwc7 = checkWinner("b3", "b5", "b7", "danger")
+            let rwc8 = checkWinner("b1", "b5", "b9", "danger")
             if (rwc1 || rwc2 || rwc3 || rwc4 || rwc5 || rwc6 || rwc7 || rwc8) {
-                document.querySelector("#output").innerHTML = ` <div class="alert danger">
-            <h1>Red is winner</h1>
-        </div> `
+                document.getElementById("output").innerHTML = `
+                <div class="alert">
+                    <h1>Red Is Winner</h1>
+                </div>
+                `
                 player1WinCount++
                 document.getElementById("p1WinCount").innerHTML = player1WinCount
+                totalCount++
+                document.getElementById("total").innerHTML = totalCount
                 return true
-
             }
             let gwc1 = checkWinner("b1", "b2", "b3", "success")
             let gwc2 = checkWinner("b4", "b5", "b6", "success")
             let gwc3 = checkWinner("b7", "b8", "b9", "success")
-            let gwc4 = checkWinner("b1", "b5", "b9", "success")
-            let gwc5 = checkWinner("b1", "b4", "b7", "success")
-            let gwc6 = checkWinner("b3", "b5", "b7", "success")
-            let gwc7 = checkWinner("b2", "b5", "b8", "success")
-            let gwc8 = checkWinner("b3", "b6", "b9", "success")
+            let gwc4 = checkWinner("b1", "b4", "b7", "success")
+            let gwc5 = checkWinner("b2", "b5", "b8", "success")
+            let gwc6 = checkWinner("b3", "b6", "b9", "success")
+            let gwc7 = checkWinner("b3", "b5", "b7", "success")
+            let gwc8 = checkWinner("b1", "b5", "b9", "success")
             if (gwc1 || gwc2 || gwc3 || gwc4 || gwc5 || gwc6 || gwc7 || gwc8) {
-                document.querySelector("#output").innerHTML = ` <div class="alert success">
-            <h1>Green is winner</h1>
-        </div> `
+                document.getElementById("output").innerHTML = `
+                <div class="alert">
+                    <h1>Green Is Winner</h1>
+                </div>
+                `
                 player2WinCount++
                 document.getElementById("p2WinCount").innerHTML = player2WinCount
-
+                totalCount++
+                document.getElementById("total").innerHTML = totalCount
                 return true
             }
+
             return false
 
 
-            drawCount++
-            document.getElementById("drawCount").innerHTML = drawCount
-            totalMatches++
-            document.getElementById("tMCount").innerHTML = player1WinCount + player2WinCount + drawCount
         }
-
-
         function checkWinner(id1, id2, id3, color) {
             let box1 = document.getElementById(id1).classList.contains(color)
             let box2 = document.getElementById(id2).classList.contains(color)
             let box3 = document.getElementById(id3).classList.contains(color)
-
             if (box1 && box2 && box3) {
                 resetGame()
                 return true
             } else {
                 return false
             }
-
-
         }
-        function checkdraw() {
-            let arr = []
-            for (let i = 1; i <= 9; i++) {
-                let x = document.getElementById(`b${i}`).classList.contains("danger")
-                let y = document.getElementById(`b${i}`).classList.contains("success")
-                if (x || y) {
-                    arr.push("skillhub")
-                }
-                if (!winner()) {
-
-                    if (arr.length === 9) {
-                        console.log("Match Draw");
-                        drawCount++
-                        totalMatches++
-                        document.getElementById("drawCount").innerHTML = drawCount
-                        document.getElementById("tMCount").innerHTML = totalMatches
-                        document.getElementById("output").innerHTML = ""
-                        resetGame()
-                    }
-                }
-
-            }
-        }
-
-
-
         function resetGame() {
             for (let i = 1; i <= 9; i++) {
                 document.getElementById(`b${i}`).classList.remove("danger")
@@ -348,24 +226,32 @@
             }
             chance = true
         }
-        function startGame() {
-            let player1 = document.getElementById("player1").value
-            let player2 = document.getElementById("player2").value
-            document.getElementById("p1").innerHTML = player1
-            document.getElementById("p2").innerHTML = player2
 
-            document.getElementById("p1WinCount").innerHTML = player1WinCount
-            document.getElementById("p2WinCount").innerHTML = player2WinCount
-            document.getElementById("drawCount").innerHTML = player2WinCount
-            document.getElementById("tMCount").innerHTML = player2WinCount
-
-            document.getElementById("gameBox").classList.remove("d-none")
-            document.getElementById("playerCard").classList.add("d-none")
+        function checkDraw(param) {
+            let arr = []
+            for (let i = 1; i <= 9; i++) {
+                let x = document
+                    .getElementById(`b${i}`)
+                    .classList.contains("danger")
+                let y = document
+                    .getElementById(`b${i}`)
+                    .classList.contains("success")
+                if (x || y) {
+                    arr.push("skillhub")
+                }
+                if (!winner()) {
+                    if (arr.length === 9) {
+                        console.log("match draw");
+                        drawCount++
+                        totalCount++
+                        document.getElementById("total").innerHTML = totalCount
+                        document.getElementById("drawCount").innerHTML = drawCount
+                        document.getElementById("output").innerHTML = "<h1>Match Draw</h1>"
+                        resetGame()
+                    }
+                }
+            }
         }
-
-
-
-
     </script>
 </body>
 
