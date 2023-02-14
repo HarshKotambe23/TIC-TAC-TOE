@@ -3,7 +3,7 @@
     "short_name": "XnO",
     "start_url": "/TIC-TAC-TOE",
     "background_color": "red",
-    "themee_color": "coral",
+    "theme_color": "coral",
     "display": "standalone",
     "description": "Timpass game created by me",
     "icons": [
