@@ -1,29 +1,31 @@
-write github readme file for tic tac toe game  build with html, css and javascript
 
-# Tic Tac Toe
+## Authors
 
-A classic Tic Tac Toe game built with HTML, CSS and JavaScript. 
+- [@HarshKotambe23](https://github.com/HarshKotambe23)
 
-## Features
 
-- Simple and intuitive user interface.
-- Easy to play game.
-- Player vs Player or Player vs Computer option.
+## 🚀 About Me
+Name: Harsh Kotambe
 
-## Getting Started
+Occupation: Fullstack Web Developer
 
-Clone the repository and open the `index.html` file in your browser to start playing the game.
+Education: Bachelor's Degree in Pharmacy
 
-## How to Play
+Experience: 1+ Years of Experience in Web Development
 
-- Player 1 is X and Player 2 is O.
-- Players take turns to place their marks in the 3x3 grid.
-- The player who succeeds in placing three respective marks in a horizontal, vertical or diagonal row wins the game.
+Skills: HTML, CSS, JavaScript, React.js, Node.js, MongoDB, MySQL, PHP, Python
 
-## Contributing
+Specializations: Responsive Design, Web Application Development, Database Management
 
-We welcome contributions to this project. To contribute, please fork the repository and submit a pull request with your changes.
+Areas of Expertise: User Interface Design, Cross-Browser Compatibility, SEO Optimization
 
-## License
+Interests: Exploring the latest web technologies, attending tech conferences and meetups, reading tech blogs and magazines
 
-This project is licensed under the MIT License.
+Certifications: Certified Fullstack Developer, Certified Web Developer
+
+
+
+
+## 🛠 Skills
+Skills: HTML, CSS, JavaScript, React.js, Node.js, MongoDB, MySQL, PHP, Python
+
