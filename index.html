@@ -37,7 +37,8 @@
         .box {
             height: 100px;
             width: 100px;
-            border: 2px solid coral;
+            border: 2px solid rgb(134, 245, 245);
+            border-radius: 10px;
             transition: 200ms;
             display: flex;
             justify-content: center;
@@ -70,6 +71,55 @@
             display: flex;
             gap: 1rem;
         }
+
+        .bt-0 {
+            border-top: 0;
+        }
+
+        .bb-0 {
+            border-bottom: 0;
+        }
+
+        .bl-0 {
+            border-left: 0;
+        }
+
+        .br-0 {
+            border-right: 0;
+        }
+
+        .playerName1 {
+            padding: 1rem;
+            border-radius: 10px;
+
+        }
+
+        .playerName2 {
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .btn {
+            padding: 0.9rem;
+            border-radius: 10px;
+            background-color: rgb(216, 106, 238);
+        }
+
+        .play-1 {
+            color: red;
+        }
+
+        .play-2 {
+            color: greenyellow;
+        }
+
+        .draw {
+            color: gray;
+        }
+
+        .total {
+            color: deepskyblue;
+        }
     </style>
 </head>
 
@@ -86,27 +136,31 @@
      -->
     <div id="output"></div>
     <div class="card" id="palyerCard">
-        <input id="player1" value="john" type="text" placeholder="enter player 1 name">
-        <input id="player2" value="kate" type="text" placeholder="enter player 2 name">
-        <button onclick="startGame()">Start Game</button>
+        <input class="playerName1" id="player1" value="PARAM" type="text" placeholder="enter player 1 name">
+        <input class="playerName2" id="player2" value="MAYURI" type="text" placeholder="enter player 2 name">
+        <button class="btn" onclick="startGame()">
+            <h3>Start Game</h3>
+        </button>
     </div>
     <div id="gameBox" class="d-none">
         <div class="playerBox">
-            <h1><span id="p1"></span> : <span id="p1WinCount"></span></h1>
-            <h1><span id="p2"></span> : <span id="p2WinCount"></span></h1>
-            <h1>Draw : <span id="drawCount"></span> </h1>
-            <h1>Total : <span id="total"></span></h1>
+            <h1 class="play-1"><span id="p1"></span> : <span id="p1WinCount"></span></h1>
+            <h1 class="play-2"><span id="p2"></span> : <span id="p2WinCount"></span></h1>
+            <h1 class="draw">Draw : <span id="drawCount"></span> </h1>
+            <h1 class="total">Total : <span id="total"></span></h1>
         </div>
+        <br>
+        <br>
         <div class="mainBox ">
-            <div class="box" id="b1" onclick="handleSelect('b1')"></div>
-            <div class="box" id="b2" onclick="handleSelect('b2')"></div>
-            <div class="box" id="b3" onclick="handleSelect('b3')"></div>
-            <div class="box" id="b4" onclick="handleSelect('b4')"></div>
-            <div class="box" id="b5" onclick="handleSelect('b5')"></div>
-            <div class="box" id="b6" onclick="handleSelect('b6')"></div>
-            <div class="box" id="b7" onclick="handleSelect('b7')"></div>
-            <div class="box" id="b8" onclick="handleSelect('b8')"></div>
-            <div class="box" id="b9" onclick="handleSelect('b9')"></div>
+            <div class="box bt-0 bl-0" id="b1" onclick="handleSelect('b1')"></div>
+            <div class="box bt-0" id="b2" onclick="handleSelect('b2')"></div>
+            <div class="box bt-0 br-0" id="b3" onclick="handleSelect('b3')"></div>
+            <div class="box bl-0" id="b4" onclick="handleSelect('b4')"></div>
+            <div class="box " id="b5" onclick="handleSelect('b5')"></div>
+            <div class="box br-0" id="b6" onclick="handleSelect('b6')"></div>
+            <div class="box bb-0 bl-0" id="b7" onclick="handleSelect('b7')"></div>
+            <div class="box bb-0" id="b8" onclick="handleSelect('b8')"></div>
+            <div class="box bb-0 br-0" id="b9" onclick="handleSelect('b9')"></div>
         </div>
     </div>
     <script>
